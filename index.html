@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naveen Anuja - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body class="smooth-scroll relative bg-gray-900 text-white">
+    <canvas id="hero-canvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas>
+
+    <!-- Navigation -->
+    <nav class="bg-gray-900 p-4 fixed w-full z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl">Portfolio</h1>
+            <ul class="flex space-x-4 md:space-x-6">
+                <li><a href="#home" class="hover:text-gray-400 px-2 md:px-3">Home</a></li>
+                <li><a href="#about" class="hover:text-gray-400 px-2 md:px-3">About</a></li>
+                <li><a href="#skills" class="hover:text-gray-400 px-2 md:px-3">Skills</a></li>
+                <li><a href="#projects" class="hover:text-gray-400 px-2 md:px-3">Projects</a></li>
+                <li><a href="#contact" class="hover:text-gray-400 px-2 md:px-3">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center text-center pt-20 overflow-hidden">
+        <div class="relative z-10 hero-content">
+            <img src="images/my_pic.png" alt="Naveen Anuja" class="w-32 h-32 md:w-48 md:h-48 rounded-full mx-auto border-4 border-white hero-image">
+            <h1 class="text-4xl md:text-6xl font-bold mb-2 hero-name">Naveen Anuja</h1>
+            <div class="hero-desc">
+                <p class="text-xl md:text-2xl mb-4">Full Stack Developer & UI/UX Designer</p>
+                <p class="mb-6 text-lg md:text-xl">Driven to build scalable, user-centric solutions with a positive impact</p>
+            </div>
+            <div class="space-x-4">
+                <a href="cv/Naveen_Anuja_cv.pdf" download="Naveen_Anuja_CV.pdf">
+                    <button class="bg-gray-700 px-4 py-2 rounded-full hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-blue-500">Download CV</button>
+                </a>
+                <button class="bg-gray-700 px-4 py-2 rounded-full hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-blue-500"><a href="#contact">Contact Me</a></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 container mx-auto px-4 text-center relative z-10">
+        <canvas id="about-canvas" class="absolute top-0 left-0 w-full h-full pointer-events-none"></canvas>
+        <div class="about-content">
+            <h2 class="text-3xl font-bold mb-10 animate-fade-in">About Me</h2>
+            <p class="text-lg max-w-3xl mx-auto mb-6 text-left">I am a passionate Java enthusiast, full-stack developer, and UI/UX designer focused on building scalable, user-centric applications. While I enjoy working across the full stack, I am particularly drawn to backend development, where I design efficient architectures and solve complex challenges. Balancing education and professional work has strengthened my adaptability and time management. With a strong foundation in software development and UX design, I deliver high-quality, maintainable solutions that drive business success. As a happy spreader, I thrive on fostering positivity, collaboration, and growth, always eager to share knowledge, mentor, and contribute to impactful projects. Let’s connect and create something meaningful together!</p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5 container mx-auto px-4 relative z-10">
+        <h2 class="text-3xl font-bold text-center mb-10 animate-fade-in">Skills & Expertise</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Skill Cards -->
+            <div class="skill-card relative p-6 bg-gray-800 rounded-lg card-item">
+                <h3 class="text-xl mb-4">Frontend Development</h3>
+                <div class="skill-item"><span>HTML/CSS</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 98%;"><span class="progress-text">98%</span></div></div></div>
+                <div class="skill-item"><span>JavaScript</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 94%;"><span class="progress-text">94%</span></div></div></div>
+                <div class="skill-item"><span>AngularJS</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 86%;"><span class="progress-text">86%</span></div></div></div>
+                <div class="skill-item"><span>ReactJS</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 75%;"><span class="progress-text">75%</span></div></div></div>
+                <div class="skill-item"><span>Bootstrap</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 97%;"><span class="progress-text">97%</span></div></div></div>
+                <div class="skill-item"><span>Tailwind</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 82%;"><span class="progress-text">82%</span></div></div></div>
+            </div>
+
+            <div class="skill-card relative p-6 bg-gray-800 rounded-lg card-item">
+                <h3 class="text-xl mb-4">Backend Development</h3>
+                <div class="skill-item"><span>Java</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 95%;"><span class="progress-text">95%</span></div></div></div>
+                <div class="skill-item"><span>MySQL</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 92%;"><span class="progress-text">92%</span></div></div></div>
+                <div class="skill-item"><span>Spring Boot</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 80%;"><span class="progress-text">80%</span></div></div></div>
+                <div class="skill-item"><span>NodeJS</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 70%;"><span class="progress-text">70%</span></div></div></div>
+                <div class="skill-item"><span>ExpressJS</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 85%;"><span class="progress-text">85%</span></div></div></div>
+                <div class="skill-item"><span>MongoDB</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 55%;"><span class="progress-text">55%</span></div></div></div>
+            </div>
+
+            <div class="skill-card relative p-6 bg-gray-800 rounded-lg card-item">
+                <h3 class="text-xl mb-4">Tools & Technologies</h3>
+                <div class="skill-item"><span>VS Code</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 100%;"><span class="progress-text">100%</span></div></div></div>
+                <div class="skill-item"><span>IntelliJ</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 90%;"><span class="progress-text">90%</span></div></div></div>
+                <div class="skill-item"><span>GitHub/GitLab</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 92%;"><span class="progress-text">92%</span></div></div></div>
+                <div class="skill-item"><span>DBeaver</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 76%;"><span class="progress-text">76%</span></div></div></div>
+                <div class="skill-item"><span>Figma</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 90%;"><span class="progress-text">90%</span></div></div></div>
+                <div class="skill-item"><span>Postman</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 88%;"><span class="progress-text">88%</span></div></div></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 container mx-auto px-4 relative z-10">
+        <h2 class="text-3xl font-bold text-center mb-10 animate-fade-in">Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Project Cards -->
+            <div class="project-card relative p-6 bg-gray-800 rounded-lg card-item">
+                <img src="images/weather.webp" alt="Windy Weather App" class="w-full h-48 object-cover">
+                <h3 class="text-xl mb-2">Weather App</h3>
+                <p>Track the winds, rain, and everything in between with my Windy Weather App!</p>
+                <p class="text-[1.1rem] text-gray-400 font-bold mt-2">HTML, CSS, JavaScript, Bootstrap</p>
+                <a href="https://github.com/NaveenAnuja/weather-App"><button class="bg-gray-700 px-4 py-2 rounded-full mt-9 py-2 hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-blue-500">View Project</button></a>
+            </div>
+
+            <div class="project-card relative p-6 bg-gray-800 rounded-lg card-item">
+                <img src="images/movie-hub.jpeg" alt="MOS Burger" class="w-full h-48 object-cover">
+                <h3 class="text-xl mb-2">Movie-Hub</h3>
+                <p>Streamline your movie experience with Movie-Hub, a platform designed for seamless browsing and personalized recommendations!</p>
+                <p class="text-[1.1rem] text-gray-400 font-bold mt-2">Angular, Spring Boot, MySQL, Bootstrap</p>
+                <a href="https://github.com/NaveenAnuja/movie-hub-frontend"><button class="bg-gray-700 px-4 py-2 rounded-full mt-4 hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-blue-500">View Project</button></a>
+            </div>
+
+            <div class="project-card relative p-6 bg-gray-800 rounded-lg card-item">
+                <img src="images/tic-tac-toe.webp" alt="Tic Tac Toe" class="w-full h-48 object-cover">
+                <h3 class="text-xl mb-2">Tic Tac Toe Game - Java Swing</h3>
+                <p>Unleash the fun with my custom-built Tic Tac Toe game in Java Swing!</p>
+                <p class="text-[1.1rem] text-gray-400 font-bold mt-2">Java, Java Swing</p>
+                <a href="https://github.com/NaveenAnuja/Tic-Tac-Toe-Game"><button class="bg-gray-700 px-4 py-2 rounded-full mt-9 hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-blue-500">View Project</button></a>
+            </div>
+
+            <div class="project-card relative p-6 bg-gray-800 rounded-lg card-item">
+                <img src="images/student-CRN.png" alt="Windy Weather App" class="w-full h-48 object-cover">
+                <h3 class="text-xl mb-2">Student-CRN</h3>
+                <p>Empower your academic journey with Student-CRN, a seamless platform for managing students!</p>
+                <p class="text-[1.1rem] text-gray-400 font-bold mt-2">HTML, CSS, JavaScript, Spring Boot</p>
+                <a href="https://github.com/NaveenAnuja/student-CRN-backend-"><button class="bg-gray-700 px-4 py-2 rounded-full mt-9 hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-blue-500">View Project</button></a>
+            </div>
+
+            <div class="project-card relative p-6 bg-gray-800 rounded-lg card-item">
+                <img src="images/Project-Portfolio-Management.jpg.webp" alt="Weather App" class="w-full h-48 object-cover">
+                <h3 class="text-xl mb-2">My Portfolio</h3>
+                <p>Explore my journey, projects, and skills through a showcase of creativity and technical expertise!</p>
+                <p class="text-[1.1rem] text-gray-400 font-bold mt-2">HTML, CSS, JavaScript, Tailwindcss, ThreeJS</p>
+                <button class="bg-gray-700 px-4 py-2 rounded-full mt-4 hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-blue-500">View Project</button>
+            </div>
+
+            <div class="project-card relative p-6 bg-gray-800 rounded-lg card-item">
+                <img src="images/burger.jpeg" alt="Windy Weather App" class="w-full h-48 object-cover">
+                <h3 class="text-xl mb-2">CRAVE burger-POS system</h3>
+                <p>Streamline orders, manage inventory, and enhance customer service with my custom-built POS system for CRAVE Burger!</p>
+                <p class="text-[1.1rem] text-gray-400 font-bold mt-2">HTML, CSS, JavaScript, Bootstrap</p>
+                <a href="https://github.com/NaveenAnuja/Crave-Burger"><button class="bg-gray-700 px-4 py-2 rounded-full mt-4 hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-blue-500">View Project</button></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 container mx-auto px-4 text-center relative z-10">
+        <h2 class="text-3xl font-bold mb-10 contact-item">Get in Touch</h2>
+        <div class="flex justify-center mb-6 contact-item">
+            <a href="https://www.linkedin.com/in/naveen-anuja" class="mx-6"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/NaveenAnuja?tab=repositories" class="mx-6"><i class="fab fa-github"></i></a>
+            <a href="http://Wa.me/+94768490642" class="mx-6"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/naveen_anuja/" class="mx-6"><i class="fab fa-instagram"></i></a>
+        </div>
+        <form class="max-w-lg mx-auto mt-4 contact-form">
+            <input type="text" id="nameInput" placeholder="Name" class="w-full p-3 mb-4 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 contact-item">
+            <input type="email" id="emailInput" placeholder="Email" class="w-full p-3 mb-4 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 contact-item">
+            <input type="text" id="subjectInput" placeholder="Subject" class="w-full p-3 mb-4 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 contact-item">
+            <textarea placeholder="Message" id="massageInput" class="w-full p-3 mb-4 bg-gray-700 rounded-lg h-32 focus:outline-none focus:ring-2 focus:ring-blue-500 contact-item"></textarea>
+            <button type="submit" class="bg-gray-700 px-6 py-3 rounded-full hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-blue-500 contact-item" onclick="sendMail()">Send</button>
+        </form>
+    </section>
+
+    <script src="app.js"></script>
+    <script src="email.js"></script>
+</body>
+</html>
