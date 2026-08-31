@@ -408,4 +408,74 @@
     document.body.classList.add('is-locked');
     onScroll();
     updateTimelineProgress();
+
+    /* ------------------------------------------------------------- Toast system */
+    const TOAST_ICONS = {
+        success: 'fa-circle-check',
+        error: 'fa-circle-xmark',
+        warning: 'fa-triangle-exclamation',
+        info: 'fa-circle-info'
+    };
+
+    function ensureToastStack() {
+        let stack = document.getElementById('toast-stack');
+        if (!stack) {
+            stack = document.createElement('div');
+            stack.id = 'toast-stack';
+            stack.className = 'toast-stack';
+            stack.setAttribute('aria-live', 'polite');
+            stack.setAttribute('aria-atomic', 'false');
+            document.body.appendChild(stack);
+        }
+        return stack;
+    }
+
+    function dismissToast(toast) {
+        if (!toast || toast.classList.contains('is-leaving')) return;
+        toast.classList.add('is-leaving');
+        setTimeout(() => toast.remove(), 360);
+    }
+
+    window.showToast = function showToast(options) {
+        const {
+            type = 'info',
+            title = '',
+            message = '',
+            duration = 5200
+        } = options || {};
+
+        const stack = ensureToastStack();
+        const toast = document.createElement('div');
+        toast.className = `toast toast--${type}`;
+        toast.setAttribute('role', type === 'error' ? 'alert' : 'status');
+
+        const icon = TOAST_ICONS[type] || TOAST_ICONS.info;
+        toast.innerHTML = `
+            <div class="toast__icon" aria-hidden="true"><i class="fa-solid ${icon}"></i></div>
+            <div class="toast__body">
+                <p class="toast__title"></p>
+                <p class="toast__message"></p>
+            </div>
+            <button type="button" class="toast__close" aria-label="Dismiss notification">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <span class="toast__progress" style="animation-duration:${duration}ms"></span>
+        `;
+
+        toast.querySelector('.toast__title').textContent = title;
+        toast.querySelector('.toast__message').textContent = message;
+
+        const closeBtn = toast.querySelector('.toast__close');
+        closeBtn.addEventListener('click', () => dismissToast(toast));
+
+        stack.appendChild(toast);
+
+        let timer = setTimeout(() => dismissToast(toast), duration);
+        toast.addEventListener('mouseenter', () => clearTimeout(timer));
+        toast.addEventListener('mouseleave', () => {
+            timer = setTimeout(() => dismissToast(toast), 1800);
+        });
+
+        return toast;
+    };
 })();

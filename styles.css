@@ -2438,3 +2438,177 @@ a {
         transform: none !important;
     }
 }
+
+/* ==========================================================================
+   Toast notifications
+   ========================================================================== */
+.toast-stack {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    width: min(380px, calc(100vw - 2rem));
+    pointer-events: none;
+}
+
+.toast {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: .85rem;
+    padding: 1rem 1rem 1.1rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    background: linear-gradient(160deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .03));
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    pointer-events: auto;
+    transform: translateX(110%);
+    opacity: 0;
+    animation: toastIn .5s var(--ease) forwards;
+}
+
+.toast.is-leaving {
+    animation: toastOut .35s var(--ease) forwards;
+}
+
+.toast::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(140deg, rgba(56, 189, 248, .35), transparent 55%, rgba(168, 85, 247, .28));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.toast__icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 38px;
+    height: 38px;
+    border-radius: 12px;
+    font-size: .95rem;
+}
+
+.toast--success .toast__icon {
+    background: rgba(52, 211, 153, .14);
+    color: #6ee7b7;
+    border: 1px solid rgba(52, 211, 153, .28);
+}
+
+.toast--error .toast__icon {
+    background: rgba(248, 113, 113, .12);
+    color: #fca5a5;
+    border: 1px solid rgba(248, 113, 113, .28);
+}
+
+.toast--warning .toast__icon {
+    background: rgba(251, 191, 36, .12);
+    color: #fcd34d;
+    border: 1px solid rgba(251, 191, 36, .28);
+}
+
+.toast--info .toast__icon {
+    background: var(--gradient-soft);
+    color: var(--brand-1);
+    border: 1px solid var(--border);
+}
+
+.toast__body {
+    flex: 1;
+    min-width: 0;
+    padding-right: 1.4rem;
+}
+
+.toast__title {
+    margin: 0 0 .2rem;
+    font-family: 'Sora', sans-serif;
+    font-size: .92rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.35;
+}
+
+.toast__message {
+    margin: 0;
+    font-size: .82rem;
+    color: var(--muted);
+    line-height: 1.55;
+}
+
+.toast__close {
+    position: absolute;
+    top: .65rem;
+    right: .65rem;
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--dim);
+    font-size: .78rem;
+    cursor: pointer;
+    transition: color .25s ease, background .25s ease;
+}
+
+.toast__close:hover {
+    color: var(--text);
+    background: var(--surface);
+}
+
+.toast__progress {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    transform-origin: left;
+    background: var(--gradient);
+    animation: toastProgress linear forwards;
+}
+
+.toast--success .toast__progress { background: linear-gradient(90deg, #34d399, #6ee7b7); }
+.toast--error .toast__progress { background: linear-gradient(90deg, #f87171, #fca5a5); }
+.toast--warning .toast__progress { background: linear-gradient(90deg, #f59e0b, #fcd34d); }
+
+@keyframes toastIn {
+    from { transform: translateX(110%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes toastOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(110%); opacity: 0; }
+}
+
+@keyframes toastProgress {
+    from { transform: scaleX(1); }
+    to { transform: scaleX(0); }
+}
+
+@media (min-width: 768px) {
+    .toast-stack {
+        right: 1.5rem;
+        bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .toast-stack {
+        left: 1rem;
+        right: 1rem;
+        width: auto;
+    }
+}

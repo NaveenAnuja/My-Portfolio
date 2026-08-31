@@ -7,6 +7,7 @@
     const EMAILJS_PUBLIC_KEY = 'VXDYkXXG4qMZYPC4U';
     const EMAILJS_SERVICE_ID = 'service_72ic4yf';
     const EMAILJS_TEMPLATE_ID = 'template_xvxuq3o';
+    const DIRECT_EMAIL = 'naveenanuja996@gmail.com';
 
     if (typeof emailjs !== 'undefined') {
         emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -25,11 +26,13 @@
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    const alertTheme = {
-        background: '#0b1020',
-        color: '#e8eef7',
-        confirmButtonColor: '#6366f1'
-    };
+    function notify(type, title, message) {
+        if (typeof window.showToast === 'function') {
+            window.showToast({ type, title, message });
+            return;
+        }
+        console.warn(title, message);
+    }
 
     function markError(input) {
         if (!input) return;
@@ -45,6 +48,36 @@
             : '<i class="fa-solid fa-paper-plane"></i><span>Send Message</span>';
     }
 
+    function getSendErrorMessage(error) {
+        const detail = (error && (error.text || error.message)) ? String(error.text || error.message) : '';
+
+        if (/invalid grant|gmail_api|reconnect your gmail/i.test(detail)) {
+            return {
+                title: 'Delivery service unavailable',
+                message: `The email service needs to be reconnected. Please write to ${DIRECT_EMAIL} directly — I read every message.`
+            };
+        }
+
+        if (/quota|limit exceeded/i.test(detail)) {
+            return {
+                title: 'Message limit reached',
+                message: `The contact service is temporarily at capacity. Please email ${DIRECT_EMAIL} and I will respond promptly.`
+            };
+        }
+
+        if (/template|variables/i.test(detail)) {
+            return {
+                title: 'Configuration issue',
+                message: `Something went wrong on our side. Please reach out via ${DIRECT_EMAIL} for now.`
+            };
+        }
+
+        return {
+            title: 'Message not delivered',
+            message: `Your message could not be sent right now. Please email ${DIRECT_EMAIL} directly and include your subject line.`
+        };
+    }
+
     form.addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -58,21 +91,21 @@
         const empty = Object.keys(values).filter(key => !values[key]);
         if (empty.length) {
             empty.forEach(key => markError(fields[key]));
-            Swal.fire(Object.assign({
-                icon: 'warning',
-                title: 'Missing details',
-                text: 'Please fill in all fields before sending.'
-            }, alertTheme));
+            notify(
+                'warning',
+                'Almost there',
+                'Please complete all fields — name, email, subject, and message — so I can get back to you properly.'
+            );
             return;
         }
 
         if (!emailRegex.test(values.email)) {
             markError(fields.email);
-            Swal.fire(Object.assign({
-                icon: 'error',
-                title: 'Invalid email',
-                text: 'Please enter a valid email address so I can reply.'
-            }, alertTheme));
+            notify(
+                'error',
+                'Check your email address',
+                'That email format does not look valid. Use something like name@example.com and try again.'
+            );
             return;
         }
 
@@ -87,18 +120,15 @@
         }).then(function () {
             setLoading(false);
             form.reset();
-            Swal.fire(Object.assign({
-                icon: 'success',
-                title: 'Message sent!',
-                text: 'Thanks for reaching out. I will get back to you shortly.'
-            }, alertTheme));
+            notify(
+                'success',
+                'Message sent successfully',
+                `Thanks, ${values.name.split(' ')[0] || 'there'}! Your message is on its way — I typically reply within 24–48 hours.`
+            );
         }).catch(function (error) {
             setLoading(false);
-            Swal.fire(Object.assign({
-                icon: 'error',
-                title: 'Something went wrong',
-                text: 'The message could not be sent. Please email naveenanuja996@gmail.com directly.'
-            }, alertTheme));
+            const { title, message } = getSendErrorMessage(error);
+            notify('error', title, message);
             console.error('Email send error:', error);
         });
     });
