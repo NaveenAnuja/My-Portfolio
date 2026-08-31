@@ -1454,6 +1454,28 @@ a {
     margin-top: .2rem;
 }
 
+.featured-img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 420px;
+    max-height: 280px;
+    object-fit: contain;
+    border-radius: 14px;
+    box-shadow: 0 22px 50px rgba(0, 0, 0, .5);
+    animation: floatY 7s ease-in-out infinite;
+    transition: transform .45s var(--ease);
+}
+
+.featured-card:hover .featured-img {
+    transform: scale(1.02);
+}
+
+.featured-img--mobile {
+    max-width: 240px;
+    max-height: 320px;
+}
+
 /* Browser mockup */
 .mock-browser {
     position: relative;
