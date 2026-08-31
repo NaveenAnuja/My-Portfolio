@@ -94,7 +94,7 @@
             notify(
                 'warning',
                 'Almost there',
-                'Please complete all fields — name, email, subject, and message — so I can get back to you properly.'
+                'Please complete all fields. name, email, subject, and message. so I can get back to you properly.'
             );
             return;
         }
@@ -123,7 +123,7 @@
             notify(
                 'success',
                 'Message sent successfully',
-                `Thanks, ${values.name.split(' ')[0] || 'there'}! Your message is on its way — I typically reply within 24–48 hours.`
+                `Thanks, ${values.name.split(' ')[0] || 'there'}! Your message is on its way. I typically reply within 24–48 hours.`
             );
         }).catch(function (error) {
             setLoading(false);
