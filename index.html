@@ -1,172 +1,793 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naveen Anuja - Portfolio</title>
+    <title>Naveen Anuja | Associate Software Engineer &amp; Product Engineer</title>
+    <meta name="description"
+        content="Naveen Anuja - Associate Software Engineer &amp; Product Engineer specialising in Full-Stack Product Engineering, RESTful API design and commercial SaaS products with React, Node.js, Express.js, Spring Boot and Flutter.">
+    <meta name="author" content="Naveen Anuja">
+    <meta name="theme-color" content="#05070d">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Naveen Anuja | Associate Software Engineer & Product Engineer">
+    <meta property="og:description"
+        content="Full-Stack Product Engineer building live commercial products with React, Node.js, Spring Boot and Flutter.">
+    <meta property="og:url" content="https://naveenanuja.github.io/My-Portfolio">
+    <meta property="og:image" content="images/my_pic.png">
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%230b1020'/><text y='68' x='50' text-anchor='middle' font-size='52' font-family='Arial' font-weight='bold' fill='%2338bdf8'>NA</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Sora:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Sora', 'Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        };
+    </script>
+
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
-<body class="smooth-scroll relative bg-gray-900 text-white">
-    <canvas id="hero-canvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader" aria-hidden="true">
+        <div class="preloader-inner">
+            <div class="preloader-logo">NA</div>
+            <div class="preloader-bar"><span></span></div>
+            <p class="preloader-text">Loading experience</p>
+        </div>
+    </div>
+
+    <!-- Background layers -->
+    <div class="bg-layer" aria-hidden="true">
+        <canvas id="hero-canvas"></canvas>
+        <div class="bg-grid"></div>
+        <div class="bg-orb bg-orb--one"></div>
+        <div class="bg-orb bg-orb--two"></div>
+        <div class="bg-orb bg-orb--three"></div>
+        <div class="bg-vignette"></div>
+    </div>
+    <div id="cursor-glow" aria-hidden="true"></div>
 
     <!-- Navigation -->
-    <nav class="bg-gray-900 p-4 fixed w-full z-50">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-xl">Portfolio</h1>
-            <ul class="flex space-x-4 md:space-x-6">
-                <li><a href="#home" class="hover:text-gray-400 px-2 md:px-3">Home</a></li>
-                <li><a href="#about" class="hover:text-gray-400 px-2 md:px-3">About</a></li>
-                <li><a href="#skills" class="hover:text-gray-400 px-2 md:px-3">Skills</a></li>
-                <li><a href="#projects" class="hover:text-gray-400 px-2 md:px-3">Projects</a></li>
-                <li><a href="#contact" class="hover:text-gray-400 px-2 md:px-3">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Home Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center text-center pt-20 overflow-hidden">
-        <div class="relative z-10 hero-content">
-            <img src="images/my_pic.png" alt="Naveen Anuja" class="w-32 h-32 md:w-48 md:h-48 rounded-full mx-auto border-4 border-white hero-image">
-            <h1 class="text-4xl md:text-6xl font-bold mb-2 hero-name">Naveen Anuja</h1>
-            <div class="hero-desc">
-                <p class="text-xl md:text-2xl mb-4">Full Stack Developer & UI/UX Designer</p>
-                <p class="mb-6 text-lg md:text-xl">Driven to build scalable, user-centric solutions with a positive impact</p>
-            </div>
-            <div class="space-x-4">
-                <a href="cv/Naveen_Anuja_CV.pdf" download="Naveen_Anuja_CV.pdf">
-                    <button class="bg-gray-700 px-4 py-2 rounded-full hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-blue-500">Download CV</button>
+    <header id="navbar">
+        <div class="container mx-auto px-5 lg:px-8">
+            <div class="nav-inner">
+                <a href="#home" class="nav-logo" aria-label="Naveen Anuja home">
+                    <span class="nav-logo-mark">NA</span>
+                    <span class="nav-logo-text">Naveen<span class="text-gradient">.</span></span>
                 </a>
-                <button class="bg-gray-700 px-4 py-2 rounded-full hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-blue-500"><a href="#contact">Contact Me</a></button>
+
+                <nav class="nav-links" aria-label="Primary">
+                    <a href="#home" class="nav-link is-active">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#experience" class="nav-link">Experience</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+
+                <div class="nav-actions">
+                    <a href="cv/Naveen_Anuja_CV.pdf" download class="btn btn-ghost btn-sm">
+                        <i class="fa-solid fa-file-arrow-down"></i><span>Resume</span>
+                    </a>
+                    <a href="#contact" class="btn btn-primary btn-sm">Hire Me</a>
+                </div>
+
+                <button id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </div>
-    </section>
+        <div id="scroll-progress"></div>
+    </header>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 container mx-auto px-4 text-center relative z-10">
-        <canvas id="about-canvas" class="absolute top-0 left-0 w-full h-full pointer-events-none"></canvas>
-        <div class="about-content">
-            <h2 class="text-3xl font-bold mb-10 animate-fade-in">About Me</h2>
-            <p class="text-lg max-w-3xl mx-auto mb-6 text-left">I am a passionate Java enthusiast, full-stack developer, and UI/UX designer focused on building scalable, user-centric applications. While I enjoy working across the full stack, I am particularly drawn to backend development, where I design efficient architectures and solve complex challenges. Balancing education and professional work has strengthened my adaptability and time management. With a strong foundation in software development and UX design, I deliver high-quality, maintainable solutions that drive business success. As a happy spreader, I thrive on fostering positivity, collaboration, and growth, always eager to share knowledge, mentor, and contribute to impactful projects. Let’s connect and create something meaningful together!</p>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-5 container mx-auto px-4 relative z-10">
-        <h2 class="text-3xl font-bold text-center mb-10 animate-fade-in">Skills & Expertise</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Skill Cards -->
-            <div class="skill-card relative p-6 bg-gray-800 rounded-lg card-item">
-                <h3 class="text-xl mb-4">Frontend Development</h3>
-                <div class="skill-item"><span>HTML/CSS</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 98%;"><span class="progress-text">98%</span></div></div></div>
-                <div class="skill-item"><span>JavaScript</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 94%;"><span class="progress-text">94%</span></div></div></div>
-                <div class="skill-item"><span>AngularJS</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 86%;"><span class="progress-text">86%</span></div></div></div>
-                <div class="skill-item"><span>ReactJS</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 75%;"><span class="progress-text">75%</span></div></div></div>
-                <div class="skill-item"><span>Bootstrap</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 97%;"><span class="progress-text">97%</span></div></div></div>
-                <div class="skill-item"><span>Tailwind</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 82%;"><span class="progress-text">82%</span></div></div></div>
-            </div>
-
-            <div class="skill-card relative p-6 bg-gray-800 rounded-lg card-item">
-                <h3 class="text-xl mb-4">Backend Development</h3>
-                <div class="skill-item"><span>Java</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 95%;"><span class="progress-text">95%</span></div></div></div>
-                <div class="skill-item"><span>MySQL</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 92%;"><span class="progress-text">92%</span></div></div></div>
-                <div class="skill-item"><span>Spring Boot</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 80%;"><span class="progress-text">80%</span></div></div></div>
-                <div class="skill-item"><span>NodeJS</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 70%;"><span class="progress-text">70%</span></div></div></div>
-                <div class="skill-item"><span>ExpressJS</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 85%;"><span class="progress-text">85%</span></div></div></div>
-                <div class="skill-item"><span>MongoDB</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 55%;"><span class="progress-text">55%</span></div></div></div>
-            </div>
-
-            <div class="skill-card relative p-6 bg-gray-800 rounded-lg card-item">
-                <h3 class="text-xl mb-4">Tools & Technologies</h3>
-                <div class="skill-item"><span>VS Code</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 100%;"><span class="progress-text">100%</span></div></div></div>
-                <div class="skill-item"><span>IntelliJ</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 90%;"><span class="progress-text">90%</span></div></div></div>
-                <div class="skill-item"><span>GitHub/GitLab</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 92%;"><span class="progress-text">92%</span></div></div></div>
-                <div class="skill-item"><span>DBeaver</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 76%;"><span class="progress-text">76%</span></div></div></div>
-                <div class="skill-item"><span>Figma</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 90%;"><span class="progress-text">90%</span></div></div></div>
-                <div class="skill-item"><span>Postman</span><div class="progress-bar"><div class="progress-fill bg-blue-500" style="width: 88%;"><span class="progress-text">88%</span></div></div></div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 container mx-auto px-4 relative z-10">
-        <h2 class="text-3xl font-bold text-center mb-10 animate-fade-in">Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Project Cards -->
-            <div class="project-card relative p-6 bg-gray-800 rounded-lg card-item">
-                <img src="images/weather.webp" alt="Windy Weather App" class="w-full h-48 object-cover">
-                <h3 class="text-xl mb-2">Weather App</h3>
-                <p>Track the winds, rain, and everything in between with my Windy Weather App!</p>
-                <p class="text-[1.1rem] text-gray-400 font-bold mt-2">HTML, CSS, JavaScript, Bootstrap</p>
-                <a href="https://main.d3o6yejy6lx2je.amplifyapp.com/"><button class="bg-gray-700 px-4 py-2 rounded-full mt-9 py-2 hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-blue-500">View Project</button></a>
-            </div>
-
-            <div class="project-card relative p-6 bg-gray-800 rounded-lg card-item">
-                <img src="images/movie-hub.jpeg" alt="MOS Burger" class="w-full h-48 object-cover">
-                <h3 class="text-xl mb-2">Movie-Hub</h3>
-                <p>Streamline your movie experience with Movie-Hub, a platform designed for seamless browsing and personalized recommendations!</p>
-                <p class="text-[1.1rem] text-gray-400 font-bold mt-2">Angular, Spring Boot, MySQL, Bootstrap</p>
-                <a href="https://github.com/NaveenAnuja/movie-hub-frontend"><button class="bg-gray-700 px-4 py-2 rounded-full mt-4 hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-blue-500">View Project</button></a>
-            </div>
-
-            <div class="project-card relative p-6 bg-gray-800 rounded-lg card-item">
-                <img src="images/tic-tac-toe.webp" alt="Tic Tac Toe" class="w-full h-48 object-cover">
-                <h3 class="text-xl mb-2">Tic Tac Toe Game - Java Swing</h3>
-                <p>Unleash the fun with my custom-built Tic Tac Toe game in Java Swing!</p>
-                <p class="text-[1.1rem] text-gray-400 font-bold mt-2">Java, Java Swing</p>
-                <a href="https://github.com/NaveenAnuja/Tic-Tac-Toe-Game"><button class="bg-gray-700 px-4 py-2 rounded-full mt-9 hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-blue-500">View Project</button></a>
-            </div>
-
-            <div class="project-card relative p-6 bg-gray-800 rounded-lg card-item">
-                <img src="images/student-CRN.png" alt="Windy Weather App" class="w-full h-48 object-cover">
-                <h3 class="text-xl mb-2">Student-CRN</h3>
-                <p>Empower your academic journey with Student-CRN, a seamless platform for managing students!</p>
-                <p class="text-[1.1rem] text-gray-400 font-bold mt-2">HTML, CSS, JavaScript, Spring Boot</p>
-                <a href="https://github.com/NaveenAnuja/student-CRN-backend-"><button class="bg-gray-700 px-4 py-2 rounded-full mt-9 hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-blue-500">View Project</button></a>
-            </div>
-
-            <div class="project-card relative p-6 bg-gray-800 rounded-lg card-item">
-                <img src="images/Project-Portfolio-Management.jpg.webp" alt="Weather App" class="w-full h-48 object-cover">
-                <h3 class="text-xl mb-2">My Portfolio</h3>
-                <p>Explore my journey, projects, and skills through a showcase of creativity and technical expertise!</p>
-                <p class="text-[1.1rem] text-gray-400 font-bold mt-2">HTML, CSS, JavaScript, Tailwindcss, ThreeJS</p>
-                <a href="https://github.com/NaveenAnuja/My-Portfolio"><button class="bg-gray-700 px-4 py-2 rounded-full mt-4 hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-blue-500">View Project</button></a>
-            </div>
-
-            <div class="project-card relative p-6 bg-gray-800 rounded-lg card-item">
-                <img src="images/burger.jpeg" alt="Windy Weather App" class="w-full h-48 object-cover">
-                <h3 class="text-xl mb-2">CRAVE burger-POS system</h3>
-                <p>Streamline orders, manage inventory, and enhance customer service with my custom-built POS system for CRAVE Burger!</p>
-                <p class="text-[1.1rem] text-gray-400 font-bold mt-2">HTML, CSS, JavaScript, Bootstrap</p>
-                <a href="https://github.com/NaveenAnuja/Crave-Burger"><button class="bg-gray-700 px-4 py-2 rounded-full mt-4 hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-blue-500">View Project</button></a>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+        <nav class="mobile-menu-list" aria-label="Mobile">
+            <a href="#home" class="mobile-link"><span>01</span>Home</a>
+            <a href="#about" class="mobile-link"><span>02</span>About</a>
+            <a href="#experience" class="mobile-link"><span>03</span>Experience</a>
+            <a href="#projects" class="mobile-link"><span>04</span>Projects</a>
+            <a href="#skills" class="mobile-link"><span>05</span>Skills</a>
+            <a href="#contact" class="mobile-link"><span>06</span>Contact</a>
+        </nav>
+        <div class="mobile-menu-footer">
+            <a href="cv/Naveen_Anuja_CV.pdf" download class="btn btn-primary btn-block">
+                <i class="fa-solid fa-file-arrow-down"></i><span>Download Resume</span>
+            </a>
+            <div class="social-row">
+                <a href="https://www.linkedin.com/in/naveen-anuja" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/NaveenAnuja" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://wa.me/94768490642" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="mailto:naveenanuja996@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 container mx-auto px-4 text-center relative z-10">
-        <h2 class="text-3xl font-bold mb-10 contact-item">Get in Touch</h2>
-        <div class="flex justify-center mb-6 contact-item">
-            <a href="https://www.linkedin.com/in/naveen-anuja" class="mx-6"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/NaveenAnuja?tab=repositories" class="mx-6"><i class="fab fa-github"></i></a>
-            <a href="http://Wa.me/+94768490642" class="mx-6"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://www.instagram.com/naveen_anuja/" class="mx-6"><i class="fab fa-instagram"></i></a>
+    <main>
+        <!-- ============ HERO ============ -->
+        <section id="home" class="section section--hero">
+            <div class="container mx-auto px-5 lg:px-8">
+                <div class="hero-grid">
+                    <div class="hero-copy">
+                        <span class="status-badge" data-animate="fade-up">
+                            <span class="status-dot"></span> Open to Software Engineering opportunities
+                        </span>
+
+                        <p class="hero-hello" data-animate="fade-up" data-delay="80">Hello, I&rsquo;m</p>
+                        <h1 class="hero-name" data-animate="fade-up" data-delay="140">Naveen Anuja</h1>
+
+                        <h2 class="hero-title" data-animate="fade-up" data-delay="200">
+                            <span class="text-gradient">Associate Software Engineer</span>
+                            <span class="hero-title-divider">|</span>
+                            <span class="text-gradient">Product Engineer</span>
+                        </h2>
+
+                        <p class="hero-typed-line" data-animate="fade-up" data-delay="260">
+                            <span class="mono-accent">&gt;</span>
+                            <span id="typed-text"></span><span class="type-caret" aria-hidden="true"></span>
+                        </p>
+
+                        <p class="hero-summary" data-animate="fade-up" data-delay="320">
+                            I architect and ship <strong>high-availability full-stack products</strong> for live
+                            commercial platforms engineering scalable RESTful APIs with Node.js, Express and
+                            Spring Boot, crafting responsive React interfaces, and delivering cross-platform mobile
+                            experiences with Flutter.
+                        </p>
+
+                        <div class="hero-actions" data-animate="fade-up" data-delay="380">
+                            <a href="#projects" class="btn btn-primary">
+                                <i class="fa-solid fa-layer-group"></i><span>View My Work</span>
+                            </a>
+                            <a href="cv/Naveen_Anuja_CV.pdf" download class="btn btn-outline">
+                                <i class="fa-solid fa-file-arrow-down"></i><span>Download CV</span>
+                            </a>
+                        </div>
+
+                        <div class="hero-socials" data-animate="fade-up" data-delay="440">
+                            <a href="https://www.linkedin.com/in/naveen-anuja" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="https://github.com/NaveenAnuja" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                            <a href="https://wa.me/94768490642" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                            <a href="https://www.instagram.com/naveen_anuja/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="mailto:naveenanuja996@gmail.com" class="social-btn" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="hero-visual" data-animate="zoom-in" data-delay="200">
+                        <div class="avatar-wrap">
+                            <div class="avatar-ring"></div>
+                            <div class="avatar-ring avatar-ring--alt"></div>
+                            <div class="avatar-glow"></div>
+                            <img src="images/my_pic.png" alt="Portrait of Naveen Anuja" class="avatar-img">
+                            <div class="float-chip float-chip--1"><i class="fa-brands fa-react"></i> React</div>
+                            <div class="float-chip float-chip--2"><i class="fa-brands fa-node-js"></i> Node.js</div>
+                            <div class="float-chip float-chip--3"><i class="fa-brands fa-java"></i> Spring Boot</div>
+                            <div class="float-chip float-chip--4"><i class="fa-solid fa-mobile-screen"></i> Flutter</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-grid" data-animate="fade-up" data-delay="120">
+                    <div class="stat-card">
+                        <span class="stat-value" data-count="2" data-suffix="+">0</span>
+                        <span class="stat-label">Years of Engineering</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" data-count="2" data-suffix="">0</span>
+                        <span class="stat-label">Live Commercial Products</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" data-count="10" data-suffix="+">0</span>
+                        <span class="stat-label">Projects Delivered</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" data-count="20" data-suffix="+">0</span>
+                        <span class="stat-label">Technologies Used</span>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#about" class="scroll-cue" aria-label="Scroll to about section">
+                <span class="scroll-mouse"><span></span></span>
+                <span class="scroll-cue-text">Scroll</span>
+            </a>
+        </section>
+
+        <!-- Marquee -->
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee-track">
+                <span>React</span><span>&bull;</span><span>Node.js</span><span>&bull;</span><span>Express.js</span><span>&bull;</span>
+                <span>TypeScript</span><span>&bull;</span><span>Spring Boot</span><span>&bull;</span><span>Flutter</span><span>&bull;</span>
+                <span>MongoDB</span><span>&bull;</span><span>MySQL</span><span>&bull;</span><span>Docker</span><span>&bull;</span>
+                <span>Kubernetes</span><span>&bull;</span><span>RESTful APIs</span><span>&bull;</span><span>Angular</span><span>&bull;</span>
+                <span>Tailwind CSS</span><span>&bull;</span><span>JWT</span><span>&bull;</span><span>Agile</span><span>&bull;</span>
+                <span>React</span><span>&bull;</span><span>Node.js</span><span>&bull;</span><span>Express.js</span><span>&bull;</span>
+                <span>TypeScript</span><span>&bull;</span><span>Spring Boot</span><span>&bull;</span><span>Flutter</span><span>&bull;</span>
+                <span>MongoDB</span><span>&bull;</span><span>MySQL</span><span>&bull;</span><span>Docker</span><span>&bull;</span>
+                <span>Kubernetes</span><span>&bull;</span><span>RESTful APIs</span><span>&bull;</span><span>Angular</span><span>&bull;</span>
+                <span>Tailwind CSS</span><span>&bull;</span><span>JWT</span><span>&bull;</span><span>Agile</span><span>&bull;</span>
+            </div>
         </div>
-        <form class="max-w-lg mx-auto mt-4 contact-form">
-            <input type="text" id="nameInput" placeholder="Name" class="w-full p-3 mb-4 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 contact-item">
-            <input type="email" id="emailInput" placeholder="Email" class="w-full p-3 mb-4 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 contact-item">
-            <input type="text" id="subjectInput" placeholder="Subject" class="w-full p-3 mb-4 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 contact-item">
-            <textarea placeholder="Message" id="massageInput" class="w-full p-3 mb-4 bg-gray-700 rounded-lg h-32 focus:outline-none focus:ring-2 focus:ring-blue-500 contact-item"></textarea>
-            <button type="submit" class="bg-gray-700 px-6 py-3 rounded-full hover:bg-gradient-to-l hover:from-pink-500 hover:via-purple-500 hover:to-blue-500 contact-item" onclick="sendMail()">Send</button>
-        </form>
-    </section>
+
+        <!-- ============ ABOUT ============ -->
+        <section id="about" class="section">
+            <div class="container mx-auto px-5 lg:px-8">
+                <div class="section-head" data-animate="fade-up">
+                    <span class="section-eyebrow">01 &mdash; About</span>
+                    <h2 class="section-title">Engineering products, <span class="text-gradient">not just code</span></h2>
+                    <p class="section-subtitle">A snapshot of who I am and how I work.</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-main glass-card" data-animate="fade-right">
+                        <h3 class="about-heading">Professional Summary</h3>
+                        <p>
+                            Highly motivated <strong>Associate Software Engineer</strong> and <strong>Product
+                            Engineer</strong> with strong hands-on expertise in Full-Stack Product Engineering, RESTful
+                            API design, and end-to-end commercial application development.
+                        </p>
+                        <p>
+                            I engineer scalable web and mobile products using <strong>React, Node.js, Express.js, Java
+                            Spring Boot, Flutter</strong> and both relational and NoSQL databases. My track record
+                            includes building mission-critical live commercial SaaS ecosystems, driving system
+                            performance optimisations, and collaborating within Agile product teams to deliver
+                            high-impact digital solutions.
+                        </p>
+
+                        <div class="about-highlights">
+                            <div class="about-highlight">
+                                <i class="fa-solid fa-cubes"></i>
+                                <div>
+                                    <h4>Full-Stack Product Engineering</h4>
+                                    <p>End-to-end ownership from database schema to polished UI.</p>
+                                </div>
+                            </div>
+                            <div class="about-highlight">
+                                <i class="fa-solid fa-server"></i>
+                                <div>
+                                    <h4>Scalable API Architecture</h4>
+                                    <p>High-throughput REST services, clean DTOs, JWT &amp; RBAC security.</p>
+                                </div>
+                            </div>
+                            <div class="about-highlight">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                                <div>
+                                    <h4>Cross-Platform Mobile</h4>
+                                    <p>Flutter apps with real-time sync and offline-first flows.</p>
+                                </div>
+                            </div>
+                            <div class="about-highlight">
+                                <i class="fa-solid fa-infinity"></i>
+                                <div>
+                                    <h4>Agile &amp; DevOps</h4>
+                                    <p>Sprint delivery, code reviews, Docker, Kubernetes and CI/CD pipelines.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <aside class="about-side" data-animate="fade-left">
+                        <div class="glass-card info-card">
+                            <h3 class="about-heading">Quick Facts</h3>
+                            <ul class="info-list">
+                                <li><i class="fa-solid fa-location-dot"></i><span><b>Location</b>Bentota, Sri Lanka</span></li>
+                                <li><i class="fa-solid fa-envelope"></i><span><b>Email</b><a href="mailto:naveenanuja996@gmail.com">naveenanuja996@gmail.com</a></span></li>
+                                <li><i class="fa-solid fa-phone"></i><span><b>Phone</b><a href="tel:+94768490642">+94 76 849 0642</a></span></li>
+                                <li><i class="fa-solid fa-circle-check"></i><span><b>Availability</b>Open to opportunities</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="glass-card info-card">
+                            <h3 class="about-heading">Education</h3>
+                            <div class="edu-item">
+                                <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                                <div>
+                                    <h4>Diploma in Computer Engineering Technology</h4>
+                                    <p>Institute of Computer Engineering Technology (iCET), Panadura</p>
+                                    <span class="chip chip--muted">2024 &ndash; 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ EXPERIENCE ============ -->
+        <section id="experience" class="section">
+            <div class="container mx-auto px-5 lg:px-8">
+                <div class="section-head" data-animate="fade-up">
+                    <span class="section-eyebrow">02 &mdash; Career</span>
+                    <h2 class="section-title">Work <span class="text-gradient">Experience</span></h2>
+                    <p class="section-subtitle">Building commercial software across product teams since 2024.</p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-line"><span class="timeline-progress"></span></div>
+
+                    <article class="timeline-item" data-animate="fade-up">
+                        <div class="timeline-dot"><i class="fa-solid fa-briefcase"></i></div>
+                        <div class="glass-card timeline-card">
+                            <div class="timeline-top">
+                                <div>
+                                    <h3 class="timeline-role">Associate Software Engineer</h3>
+                                    <p class="timeline-company"><i class="fa-solid fa-building"></i> EFIto Solutions (Pvt) Ltd</p>
+                                </div>
+                                <span class="chip chip--live">2025 Sep &ndash; Present</span>
+                            </div>
+                            <ul class="timeline-points">
+                                <li>Architect, develop, and deliver high-availability Full-Stack Product Engineering features for active commercial software applications.</li>
+                                <li>Engineer high-throughput Node.js / Express RESTful APIs and responsive React UI components, optimizing overall transaction latency and platform reliability.</li>
+                                <li>Drive full software lifecycle development (SDLC), implementing clean database schema optimizations in MongoDB for production workloads.</li>
+                                <li>Collaborate actively in daily Agile sprint execution, cross-functional code reviews, and CI/CD automated deployment workflows.</li>
+                            </ul>
+                            <div class="chip-row">
+                                <span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Express.js</span>
+                                <span class="chip">MongoDB</span><span class="chip">CI/CD</span><span class="chip">Agile</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="timeline-item" data-animate="fade-up">
+                        <div class="timeline-dot"><i class="fa-solid fa-code"></i></div>
+                        <div class="glass-card timeline-card">
+                            <div class="timeline-top">
+                                <div>
+                                    <h3 class="timeline-role">Software Engineer Intern</h3>
+                                    <p class="timeline-company"><i class="fa-solid fa-building"></i> SimpliFy Labs (LK)</p>
+                                </div>
+                                <span class="chip chip--muted">2025 Feb &ndash; 2025 Aug</span>
+                            </div>
+                            <ul class="timeline-points">
+                                <li>Engineered and maintained scalable Spring Boot RESTful APIs for a cross-platform fitness app, refactoring core modules with clean DTOs and backend entities.</li>
+                                <li>Conducted comprehensive API contract testing and technical documentation using Postman and Swagger in close collaboration with frontend and QA teams.</li>
+                                <li>Implemented secure role-based JWT Authentication and managed collaborative codebase version control using GitHub.</li>
+                            </ul>
+                            <div class="chip-row">
+                                <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">JWT</span>
+                                <span class="chip">Postman</span><span class="chip">Swagger</span><span class="chip">GitHub</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="timeline-item" data-animate="fade-up">
+                        <div class="timeline-dot"><i class="fa-solid fa-laptop-code"></i></div>
+                        <div class="glass-card timeline-card">
+                            <div class="timeline-top">
+                                <div>
+                                    <h3 class="timeline-role">Software Engineer Intern</h3>
+                                    <p class="timeline-company"><i class="fa-solid fa-building"></i> ZinCaT Technology</p>
+                                </div>
+                                <span class="chip chip--muted">2024 Jul &ndash; 2025 Jan</span>
+                            </div>
+                            <ul class="timeline-points">
+                                <li>Built a responsive, user-centric Event Management platform using Express.js and React, optimizing frontend performance and user workflows.</li>
+                                <li>Designed optimized MySQL relational schemas and queries while implementing secure, role-based JWT Authentication controls.</li>
+                                <li>Containerized backend microservices with Docker and Kubernetes, automating end-to-end continuous integration and deployment pipelines via GitLab.</li>
+                            </ul>
+                            <div class="chip-row">
+                                <span class="chip">React</span><span class="chip">Express.js</span><span class="chip">MySQL</span>
+                                <span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">GitLab</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ PROJECTS ============ -->
+        <section id="projects" class="section">
+            <div class="container mx-auto px-5 lg:px-8">
+                <div class="section-head" data-animate="fade-up">
+                    <span class="section-eyebrow">03 &mdash; Portfolio</span>
+                    <h2 class="section-title">Featured <span class="text-gradient">Live Commercial Products</span></h2>
+                    <p class="section-subtitle">Production platforms serving real businesses and customers today.</p>
+                </div>
+
+                <div class="featured-grid">
+                    <article class="glass-card featured-card" data-animate="fade-right">
+                        <div class="featured-visual featured-visual--web">
+                            <div class="mock-browser">
+                                <div class="mock-bar">
+                                    <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+                                    <em class="mock-url">menupilot.lk</em>
+                                </div>
+                                <div class="mock-body">
+                                    <div class="mock-sidebar">
+                                        <span></span><span></span><span></span><span></span>
+                                    </div>
+                                    <div class="mock-content">
+                                        <div class="mock-tiles"><i></i><i></i><i></i></div>
+                                        <div class="mock-chart">
+                                            <span style="height:38%"></span><span style="height:64%"></span>
+                                            <span style="height:48%"></span><span style="height:86%"></span>
+                                            <span style="height:58%"></span><span style="height:74%"></span>
+                                        </div>
+                                        <div class="mock-lines"><b></b><b></b><b></b></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="featured-body">
+                            <div class="featured-top">
+                                <h3>MenuPilot</h3>
+                                <span class="chip chip--live"><span class="status-dot"></span> Live</span>
+                            </div>
+                            <p class="featured-tagline">Commercial Restaurant Management System</p>
+                            <ul class="timeline-points">
+                                <li>Architected and engineered core full-stack product modules for a comprehensive live restaurant management platform.</li>
+                                <li>Implemented interactive administrative dashboards for real-time kitchen operations, inventory tracking, and order dispatching.</li>
+                                <li>Optimized database payload queries and backend API endpoints to boost responsiveness during peak commercial traffic.</li>
+                            </ul>
+                            <div class="chip-row">
+                                <span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Express.js</span>
+                                <span class="chip">RESTful APIs</span><span class="chip">MongoDB</span>
+                            </div>
+                            <a href="https://menupilot.lk" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i><span>Visit menupilot.lk</span>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="glass-card featured-card" data-animate="fade-left">
+                        <div class="featured-visual featured-visual--mobile">
+                            <div class="mock-phone">
+                                <span class="mock-notch"></span>
+                                <div class="mock-screen">
+                                    <div class="mock-pos-head"><b></b><i></i></div>
+                                    <div class="mock-pos-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                                    <div class="mock-pos-total"><b></b><i></i></div>
+                                    <div class="mock-pos-btn"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="featured-body">
+                            <div class="featured-top">
+                                <h3>FanBudget</h3>
+                                <span class="chip chip--live"><span class="status-dot"></span> Live</span>
+                            </div>
+                            <p class="featured-tagline">Commercial Mobile POS System</p>
+                            <ul class="timeline-points">
+                                <li>Served as the primary application developer building the cross-platform point-of-sale mobile app using Flutter.</li>
+                                <li>Designed and integrated backend RESTful API endpoints for seamless real-time transaction synchronization with centralized servers.</li>
+                                <li>Developed core product functionality including digital receipt generation, menu configuration, and offline transaction processing.</li>
+                            </ul>
+                            <div class="chip-row">
+                                <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Node.js</span>
+                                <span class="chip">RESTful APIs</span><span class="chip">JSON</span>
+                            </div>
+                            <a href="https://fanbudget.lk" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i><span>Visit fanbudget.lk</span>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="section-head section-head--sub" data-animate="fade-up">
+                    <h2 class="section-title section-title--sm">Engineering <span class="text-gradient">Projects</span></h2>
+                    <p class="section-subtitle">Personal and academic builds that sharpen the craft.</p>
+                </div>
+
+                <div class="filter-bar" data-animate="fade-up">
+                    <button class="filter-btn is-active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="ai">AI</button>
+                    <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
+                    <button class="filter-btn" data-filter="frontend">Frontend</button>
+                    <button class="filter-btn" data-filter="java">Java</button>
+                </div>
+
+                <div class="projects-grid" id="projects-grid">
+                    <article class="glass-card project-card" data-category="ai fullstack" data-animate="fade-up">
+                        <div class="project-cover">
+                            <img src="images/AI-Chatbot-Development.jpg" alt="EchoMind AI conversational assistant" loading="lazy">
+                            <span class="project-cover-tag">AI &middot; LLM</span>
+                        </div>
+                        <div class="project-body">
+                            <h3>EchoMind</h3>
+                            <p class="project-tagline">AI-Powered Conversational Assistant</p>
+                            <p class="project-desc">Engineered a responsive AI conversational platform featuring voice and text inputs with integrated LLM API processing via an Express server.</p>
+                            <div class="chip-row">
+                                <span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Express.js</span>
+                                <span class="chip">Tailwind CSS</span><span class="chip">OpenRouter API</span>
+                            </div>
+                            <a href="https://github.com/NaveenAnuja" target="_blank" rel="noopener" class="project-link">
+                                <span>View Project</span><i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="glass-card project-card" data-category="fullstack java" data-animate="fade-up">
+                        <div class="project-cover">
+                            <img src="images/movie-hub.jpeg" alt="Movie Hub project" loading="lazy">
+                        </div>
+                        <div class="project-body">
+                            <h3>Movie Hub</h3>
+                            <p class="project-tagline">Full-Stack Movie Management System</p>
+                            <p class="project-desc">Engineered a secure web application utilizing Angular, Spring Boot, and JWT Authentication with role-based admin controls.</p>
+                            <div class="chip-row">
+                                <span class="chip">Angular</span><span class="chip">Spring Boot</span><span class="chip">MySQL</span><span class="chip">JWT</span>
+                            </div>
+                            <a href="https://github.com/NaveenAnuja/movie-hub-frontend" target="_blank" rel="noopener" class="project-link">
+                                <span>View Project</span><i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="glass-card project-card" data-category="fullstack java" data-animate="fade-up">
+                        <div class="project-cover">
+                            <img src="images/student-CRN.png" alt="Student CRN project" loading="lazy">
+                        </div>
+                        <div class="project-body">
+                            <h3>Student-CRN</h3>
+                            <p class="project-tagline">Student Records Management</p>
+                            <p class="project-desc">A seamless CRUD platform for managing student records, backed by a Spring Boot REST API and a lightweight responsive frontend.</p>
+                            <div class="chip-row">
+                                <span class="chip">Spring Boot</span><span class="chip">JavaScript</span><span class="chip">MySQL</span>
+                            </div>
+                            <a href="https://github.com/NaveenAnuja/student-CRN-backend-" target="_blank" rel="noopener" class="project-link">
+                                <span>View Project</span><i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="glass-card project-card" data-category="frontend" data-animate="fade-up">
+                        <div class="project-cover">
+                            <img src="images/weather.webp" alt="Windy Weather App project" loading="lazy">
+                        </div>
+                        <div class="project-body">
+                            <h3>Windy Weather App</h3>
+                            <p class="project-tagline">Real-Time Weather Dashboard</p>
+                            <p class="project-desc">Track winds, rain and forecasts through a clean, responsive interface powered by live weather API data.</p>
+                            <div class="chip-row">
+                                <span class="chip">JavaScript</span><span class="chip">Bootstrap</span><span class="chip">REST API</span>
+                            </div>
+                            <a href="https://main.d3o6yejy6lx2je.amplifyapp.com/" target="_blank" rel="noopener" class="project-link">
+                                <span>View Project</span><i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="glass-card project-card" data-category="frontend" data-animate="fade-up">
+                        <div class="project-cover">
+                            <img src="images/burger.jpeg" alt="CRAVE Burger POS project" loading="lazy">
+                        </div>
+                        <div class="project-body">
+                            <h3>CRAVE Burger POS</h3>
+                            <p class="project-tagline">Point-of-Sale System</p>
+                            <p class="project-desc">Streamline orders, manage inventory and speed up customer service with a custom-built POS interface.</p>
+                            <div class="chip-row">
+                                <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Bootstrap</span>
+                            </div>
+                            <a href="https://github.com/NaveenAnuja/Crave-Burger" target="_blank" rel="noopener" class="project-link">
+                                <span>View Project</span><i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="glass-card project-card" data-category="java" data-animate="fade-up">
+                        <div class="project-cover">
+                            <img src="images/tic-tac-toe.webp" alt="Tic Tac Toe game project" loading="lazy">
+                        </div>
+                        <div class="project-body">
+                            <h3>Tic Tac Toe</h3>
+                            <p class="project-tagline">Java Swing Desktop Game</p>
+                            <p class="project-desc">A custom-built desktop game exploring OOP design principles and event-driven UI with Java Swing.</p>
+                            <div class="chip-row">
+                                <span class="chip">Java</span><span class="chip">Java Swing</span><span class="chip">OOP</span>
+                            </div>
+                            <a href="https://github.com/NaveenAnuja/Tic-Tac-Toe-Game" target="_blank" rel="noopener" class="project-link">
+                                <span>View Project</span><i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SKILLS ============ -->
+        <section id="skills" class="section">
+            <div class="container mx-auto px-5 lg:px-8">
+                <div class="section-head" data-animate="fade-up">
+                    <span class="section-eyebrow">04 &mdash; Toolkit</span>
+                    <h2 class="section-title">Technical &amp; <span class="text-gradient">Professional Skills</span></h2>
+                    <p class="section-subtitle">The stack I use to design, build, secure and ship products.</p>
+                </div>
+
+                <div class="skills-layout">
+                    <div class="glass-card proficiency-card" data-animate="fade-right">
+                        <h3 class="about-heading">Proficiency</h3>
+                        <div class="skill-item">
+                            <div class="skill-meta"><span>JavaScript / TypeScript</span><span class="skill-pct">95%</span></div>
+                            <div class="progress-bar"><div class="progress-fill" data-width="95"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-meta"><span>React &amp; Modern Frontend</span><span class="skill-pct">92%</span></div>
+                            <div class="progress-bar"><div class="progress-fill" data-width="92"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-meta"><span>Node.js / Express.js</span><span class="skill-pct">93%</span></div>
+                            <div class="progress-bar"><div class="progress-fill" data-width="93"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-meta"><span>Java / Spring Boot</span><span class="skill-pct">88%</span></div>
+                            <div class="progress-bar"><div class="progress-fill" data-width="88"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-meta"><span>MongoDB / MySQL</span><span class="skill-pct">90%</span></div>
+                            <div class="progress-bar"><div class="progress-fill" data-width="90"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-meta"><span>Flutter / Dart</span><span class="skill-pct">82%</span></div>
+                            <div class="progress-bar"><div class="progress-fill" data-width="82"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="skills-cards">
+                        <div class="glass-card skill-card" data-animate="fade-up">
+                            <div class="skill-head"><i class="fa-solid fa-code"></i><h3>Languages</h3></div>
+                            <div class="chip-row">
+                                <span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">Java</span>
+                                <span class="chip">Dart</span><span class="chip">SQL</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card skill-card" data-animate="fade-up">
+                            <div class="skill-head"><i class="fa-solid fa-layer-group"></i><h3>Frameworks &amp; Web</h3></div>
+                            <div class="chip-row">
+                                <span class="chip">React</span><span class="chip">Angular</span><span class="chip">Node.js</span>
+                                <span class="chip">Express.js</span><span class="chip">Spring Boot</span><span class="chip">Flutter</span>
+                                <span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">Tailwind CSS</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card skill-card" data-animate="fade-up">
+                            <div class="skill-head"><i class="fa-solid fa-database"></i><h3>Databases &amp; DevOps</h3></div>
+                            <div class="chip-row">
+                                <span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">Docker</span>
+                                <span class="chip">Kubernetes</span><span class="chip">Git</span><span class="chip">GitHub</span>
+                                <span class="chip">GitLab</span><span class="chip">Postman</span><span class="chip">Swagger</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card skill-card" data-animate="fade-up">
+                            <div class="skill-head"><i class="fa-solid fa-shield-halved"></i><h3>Architecture &amp; Security</h3></div>
+                            <div class="chip-row">
+                                <span class="chip">RESTful API Architecture</span><span class="chip">Microservices</span>
+                                <span class="chip">OOP</span><span class="chip">MVC</span><span class="chip">JWT</span><span class="chip">RBAC</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card skill-card" data-animate="fade-up">
+                            <div class="skill-head"><i class="fa-solid fa-people-group"></i><h3>Professional Practices</h3></div>
+                            <div class="chip-row">
+                                <span class="chip">Agile / Scrum</span><span class="chip">Problem Solving</span>
+                                <span class="chip">Cross-Functional Collaboration</span><span class="chip">Time Management</span>
+                                <span class="chip">Technical Communication</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CONTACT ============ -->
+        <section id="contact" class="section">
+            <div class="container mx-auto px-5 lg:px-8">
+                <div class="section-head" data-animate="fade-up">
+                    <span class="section-eyebrow">05 &mdash; Contact</span>
+                    <h2 class="section-title">Let&rsquo;s build something <span class="text-gradient">impactful</span></h2>
+                    <p class="section-subtitle">Have a role, product idea or collaboration in mind? My inbox is always open.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info" data-animate="fade-right">
+                        <a href="mailto:naveenanuja996@gmail.com" class="glass-card contact-item">
+                            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                            <div><h4>Email</h4><p>naveenanuja996@gmail.com</p></div>
+                        </a>
+                        <a href="tel:+94768490642" class="glass-card contact-item">
+                            <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                            <div><h4>Phone</h4><p>+94 76 849 0642</p></div>
+                        </a>
+                        <div class="glass-card contact-item">
+                            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                            <div><h4>Location</h4><p>Bentota, Sri Lanka</p></div>
+                        </div>
+                        <a href="https://www.linkedin.com/in/naveen-anuja" target="_blank" rel="noopener" class="glass-card contact-item">
+                            <div class="contact-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+                            <div><h4>LinkedIn</h4><p>linkedin.com/in/naveen-anuja</p></div>
+                        </a>
+
+                        <div class="social-row social-row--contact">
+                            <a href="https://www.linkedin.com/in/naveen-anuja" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="https://github.com/NaveenAnuja" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                            <a href="https://wa.me/94768490642" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                            <a href="https://www.instagram.com/naveen_anuja/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+
+                    <form id="contact-form" class="glass-card contact-form" novalidate data-animate="fade-left">
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="nameInput">Name</label>
+                                <input type="text" id="nameInput" name="name" placeholder="Your full name" autocomplete="name">
+                            </div>
+                            <div class="field">
+                                <label for="emailInput">Email</label>
+                                <input type="email" id="emailInput" name="email" placeholder="you@example.com" autocomplete="email">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="subjectInput">Subject</label>
+                            <input type="text" id="subjectInput" name="subject" placeholder="What is this about?">
+                        </div>
+                        <div class="field">
+                            <label for="massageInput">Message</label>
+                            <textarea id="massageInput" name="message" rows="6" placeholder="Tell me about your project or role..."></textarea>
+                        </div>
+                        <button type="submit" id="send-btn" class="btn btn-primary btn-block">
+                            <i class="fa-solid fa-paper-plane"></i><span>Send Message</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container mx-auto px-5 lg:px-8">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <a href="#home" class="nav-logo">
+                        <span class="nav-logo-mark">NA</span>
+                        <span class="nav-logo-text">Naveen Anuja</span>
+                    </a>
+                    <p>Associate Software Engineer | Product Engineer</p>
+                </div>
+                <nav class="footer-links" aria-label="Footer">
+                    <a href="#about">About</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Naveen Anuja. All rights reserved.</p>
+                <p>Designed &amp; built with <i class="fa-solid fa-heart"></i> in Sri Lanka</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
 
     <script src="app.js"></script>
     <script src="email.js"></script>
 </body>
+
 </html>
